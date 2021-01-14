@@ -1,0 +1,63 @@
+<div class="app-flex">
+  <div class="app-login">
+    <mat-card>
+      <mat-card-content>
+        <h2 class="app-center" mat-card-title>Iniciar Sesi&oacute;n</h2>
+        <form novalidate [formGroup]="loginForm" (ngSubmit)="onSave()">
+          <mat-form-field appearance="outline" class="app-input">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="ingrese su email"
+              formControlName="email"
+              name="email"
+            />
+            <mat-error *ngIf="loginForm.get('email').errors?.required">
+              Ingrese su email
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('email').errors?.pattern">
+              Ingrese un email valido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="app-input">
+            <mat-label>Contraseña</mat-label>
+            <input
+              [type]="hide ? 'text' : 'password'"
+              matInput
+              placeholder="ingrese su contraseña"
+              name="password"
+              formControlName="password"
+            />
+
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+
+            <mat-error *ngIf="loginForm.get('password').errors?.required">
+              Ingrese su contrase&ntilde;a
+            </mat-error>
+          </mat-form-field>
+
+          <div class="app-center">
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              aria-label="Bot&oacute; para iniciar sesion"
+            >
+              Iniciar Sesi&oacute;n
+            </button>
+            <br />
+            <button routerLink="/signup" mat-button>Registrate</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

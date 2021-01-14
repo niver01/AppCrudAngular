@@ -1,27 +1,34 @@
 # AppCrud
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+# Crear la base de datos
 
-## Development server
+- ejecute el script **server/BDCrud.sql** en `SQLServer`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Para correr el backend
 
-## Code scaffolding
+- puede ejectur el proyecto **server/WSCrud** en visual studio 2019.
+- o puede buscar el ejecutable **WSCrud.exe** en la **ubicaci&oacute;n WSCrud\WSCrud\bin\Debug\netcoreapp3.1** y correrlo.
+- recuerde que el servidor esta correindo en **https://localhost:44381**, si el puerto es otro, asegurense de cambiar `en angular environments/environments.ts`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#
 
-## Build
+Este proyecto fue generado con
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+- [NodeJS](https://nodejs.org/es) version 12.18.2
 
-## Running unit tests
+## Instalar las dependencias
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- npm `install`
 
-## Running end-to-end tests
+## Servidor de desarrollo
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Correr `ng serve` para un servidor de desarrollo. Navegar a `http://localhost:4200/`. La aplicación se recargará automáticamente si cambia alguno de los archivos de origen.
 
-## Further help
+## Construir
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Ejecute `ng build` para construir el proyecto. Los artefactos de construcción se almacenarán en el directorio `dist /`. Usa la marca `--prod` para una construcción de producción.
+
+## Ayuda adicional
+
+Para obtener más ayuda en Angular CLI, use `ng help` o consulte la página [Descripción general y referencia de comandos de Angular CLI] (https://angular.io/cli).

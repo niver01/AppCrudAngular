@@ -1,0 +1,34 @@
+<div class="app-dialog">
+  <form novalidate [formGroup]="taxpayerForm" (ngSubmit)="onSave()">
+    <h2 class="app-center" mat-dialog-title>
+      {{
+        taxpayer === null ? "Nuevo Contribuyente" : "Actualizar Contribuyente"
+      }}
+    </h2>
+    <mat-dialog-content>
+      <mat-form-field class="app-input">
+        <mat-label>Nombre</mat-label>
+        <textarea
+          rows="2"
+          matInput
+          name="nombre"
+          formControlName="nombre"
+          maxlength="50"
+        ></textarea>
+        <mat-hint align="end">
+          {{ taxpayerForm.get("nombre").value?.length }} / 50
+        </mat-hint>
+        <mat-error *ngIf="taxpayerForm.get('nombre').errors?.required">
+          Ingrese el nombre del contribuyente
+        </mat-error>
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="center">
+      <button type="button" mat-button [mat-dialog-close]="false">
+        Cancelar
+      </button>
+      <button mat-flat-button color="primary" type="submit">Guardar</button>
+    </mat-dialog-actions>
+  </form>
+</div>

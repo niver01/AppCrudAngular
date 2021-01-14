@@ -1,0 +1,128 @@
+<div class="app-dialog">
+  <form novalidate [formGroup]="entityForm" (ngSubmit)="onSave()">
+    <h2 class="app-center" mat-dialog-title>
+      {{ entity === null ? "Nuevo Entidad" : "Actualizar Entidad" }}
+    </h2>
+    <mat-dialog-content>
+      <mat-form-field class="app-input">
+        <mat-label>Tipo documento</mat-label>
+        <mat-select
+          name="idTipoDoc"
+          formControlName="idTipoDoc"
+          cdkFocusInitial
+        >
+          <mat-option
+            *ngFor="let option of optionsDocuments"
+            value="{{ option.idTipoDoc }}"
+          >
+            {{ option.codigo }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="entityForm.get('idTipoDoc').errors?.required">
+          Selecione un tipo de dcoumento
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-input">
+        <mat-label>Nº documento</mat-label>
+        <input
+          type="text"
+          matInput
+          name="numDocumento"
+          formControlName="numDocumento"
+          maxlength="30"
+        />
+        <mat-hint align="end">
+          {{ entityForm.get("numDocumento").value?.length }} / 30
+        </mat-hint>
+        <mat-error *ngIf="entityForm.get('numDocumento').errors?.required">
+          Ingrese el n&uacute;mero de documento
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-input">
+        <mat-label>Razon social</mat-label>
+        <input
+          type="text"
+          matInput
+          name="razonSocial"
+          formControlName="razonSocial"
+          maxlength="200"
+        />
+        <mat-hint align="end">
+          {{ entityForm.get("razonSocial").value?.length }} / 200
+        </mat-hint>
+        <mat-error *ngIf="entityForm.get('razonSocial').errors?.required">
+          Ingrese la razon social
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-input">
+        <mat-label>Nombre comercial</mat-label>
+        <input
+          type="text"
+          matInput
+          name="nombreComercial"
+          formControlName="nombreComercial"
+          maxlength="200"
+        />
+        <mat-hint align="end">
+          {{ entityForm.get("nombreComercial").value?.length }} / 200
+        </mat-hint>
+        <mat-error *ngIf="entityForm.get('nombreComercial').errors?.required">
+          Ingrese el nombre comercial
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-input">
+        <mat-label>Contribuyente</mat-label>
+        <mat-select name="idContribuyente" formControlName="idContribuyente">
+          <mat-option
+            *ngFor="let option of optionsTaxpayer"
+            value="{{ option.idContribuyente }}"
+          >
+            {{ option.nombre }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="entityForm.get('idContribuyente').errors?.required">
+          Selecione un contribuyente
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-input">
+        <mat-label>Direcci&oacute;n</mat-label>
+        <textarea
+          rows="2"
+          matInput
+          name="direccion"
+          formControlName="direccion"
+          maxlength="200"
+        ></textarea>
+        <mat-hint align="end">
+          {{ entityForm.get("direccion").value?.length }} / 200
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="app-input">
+        <mat-label>Tel&eacute;fono</mat-label>
+        <input
+          type="text"
+          matInput
+          name="telefono"
+          formControlName="telefono"
+          cdkFocusInitial
+        />
+        <mat-error *ngIf="entityForm.get('telefono').errors?.pattern">
+          Ingrese un n&uacute;mero valido.
+        </mat-error>
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="center">
+      <button type="button" mat-button [mat-dialog-close]="false">
+        Cancelar
+      </button>
+      <button mat-flat-button color="primary" type="submit">Guardar</button>
+    </mat-dialog-actions>
+  </form>
+</div>

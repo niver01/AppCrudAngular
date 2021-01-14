@@ -1,0 +1,65 @@
+<div class="app-dialog">
+  <form novalidate [formGroup]="documentForm" (ngSubmit)="onSave()">
+    <h2 class="app-center" mat-dialog-title>
+      {{ document === null ? "Nuevo Documento" : "Actualizar Documento" }}
+    </h2>
+
+    <mat-dialog-content>
+      <mat-form-field class="app-input">
+        <mat-label>Codigo</mat-label>
+        <input
+          type="text"
+          matInput
+          name="codigo"
+          formControlName="codigo"
+          cdkFocusInitial
+          maxlength="20"
+        />
+        <mat-hint align="end">
+          {{ documentForm.get("codigo").value?.length }} / 20
+        </mat-hint>
+        <mat-error *ngIf="documentForm.get('codigo').errors?.required">
+          Ingrese el codigo
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-input">
+        <mat-label>Nombre</mat-label>
+        <textarea
+          rows="2"
+          matInput
+          name="nombre"
+          formControlName="nombre"
+          maxlength="100"
+        ></textarea>
+        <mat-hint align="end">
+          {{ documentForm.get("nombre").value?.length }} / 100
+        </mat-hint>
+        <mat-error *ngIf="documentForm.get('nombre').errors?.required">
+          Ingrese el nombre
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-input">
+        <mat-label>Descripci&oacute;n</mat-label>
+        <textarea
+          rows="4"
+          matInput
+          name="descripcion"
+          formControlName="descripcion"
+          maxlength="200"
+        ></textarea>
+        <mat-hint align="end">
+          {{ documentForm.get("descripcion").value?.length }} / 200
+        </mat-hint>
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="center">
+      <button type="button" mat-button [mat-dialog-close]="false">
+        Cancelar
+      </button>
+      <button mat-flat-button color="primary" type="submit">Guardar</button>
+    </mat-dialog-actions>
+  </form>
+</div>

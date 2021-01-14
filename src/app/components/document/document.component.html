@@ -1,0 +1,131 @@
+<div class="app-boton-fixed">
+  <button
+    mat-fab
+    color="primary"
+    aria-label="Bot&oacute; para registrar nuevo documento"
+    matTooltip="Nuevo documento"
+    matTooltipPosition="above"
+    (click)="openAdd()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div class="mat-elevation-z8">
+  <div class="app-table">
+    <div class="app-table__search">
+      <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Buscar categoria"
+          #input
+        />
+        <button
+          mat-button
+          *ngIf="input.value"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="input.value = ''; applyFilter($event)"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-icon *ngIf="!input.value" matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="app-table__content">
+      <div class="app-table__content-table">
+        <table class="app-table__fill" mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="IdTipoDoc">
+            <th mat-header-cell *matHeaderCellDef>#</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoDoc }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Codigo">
+            <th mat-header-cell *matHeaderCellDef>Codigo</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.codigo }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.nombre }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Descripcion">
+            <th mat-header-cell *matHeaderCellDef>Descripci&oacute;n</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.descripcion }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Action">
+            <th class="app-center" mat-header-cell *matHeaderCellDef>
+              Acciones
+            </th>
+            <td class="app-table__button" mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button
+                  mat-menu-item
+                  aria-label="Bot&oacute; para actualizar documento."
+                  (click)="openUpdate(element)"
+                >
+                  <mat-icon>mode_edit</mat-icon>
+                  <span>Actualizar</span>
+                </button>
+
+                <button
+                  mat-menu-item
+                  aria-label="Bot&oacute; para eliminar documento."
+                  (click)="openDelete(element)"
+                >
+                  <mat-icon>delete</mat-icon>
+                  <span>Eliminar</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <!-- cabezeras -->
+          <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns; sticky: true"
+          ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          <!-- Fila que se muestra cuando no hay datos coincidentes. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell app-center" colspan="5">
+              {{
+                input.value
+                  ? 'No hay datos que coincidan con el filtro "' +
+                    input.value +
+                    '"'
+                  : "No se encontraron registros :("
+              }}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>
