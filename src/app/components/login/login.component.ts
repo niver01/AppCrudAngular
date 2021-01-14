@@ -42,6 +42,10 @@ export class LoginComponent {
           console.log(res);
           if (res.result) {
             this._router.navigate(['/']);
+          } else {
+            this._snackBar.open(res.message, '', {
+              duration: this._duration,
+            });
           }
         },
         (err) => {
